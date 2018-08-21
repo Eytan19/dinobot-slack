@@ -76,7 +76,9 @@ POST_URL = 'https://hooks.slack.com/services/TBNL4J6KA/BCABLPNG0/KO4v1sUPnGuWLqu
 
 MEMBER_URL = 'https://columbiabizschool.slack.com/api/users.list'
 
-PARAMS = {'token': 'xoxp-396684618656-409486171985-420448231174-acbdb978387900d051251b8d5e824239'}
+TOKEN = os.environ('token')
+
+PARAMS = {'token': TOKEN}
 
 HEADERS = {'content-type': 'application/json'}
 
