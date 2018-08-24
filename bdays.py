@@ -1,6 +1,7 @@
 import requests
 import datetime
 import json
+import argparse
 from os import environ
 
 
@@ -72,11 +73,15 @@ BIRTHDAY_DATA = (
     ['Sherie', 'Zhou', '8/17'],
 )
 
+parser = argrparse.ArgumentParser()
+parser.add_argument('token')
+args = parser.parse_args()
+
+TOKEN = args.token
+
 POST_URL = 'https://hooks.slack.com/services/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'
 
 MEMBER_URL = 'https://columbiabizschool.slack.com/api/users.list'
-
-TOKEN = os.environ('token')
 
 PARAMS = {'token': TOKEN}
 
