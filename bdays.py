@@ -57,14 +57,14 @@ BIRTHDAY_DATA = (
     ['Adi', 'Prasad', '9/3'],
     ['Justin', 'Reggi', '5/12,'],
     ['Laura', 'Rodgers', '4/2'],
-    ['Eytan', 'Schindelhaim', '10/22'],
+    ['Eytan', None, '10/22'],
     ['Janaki', 'Sekaran', '1/2'],
     ['Sid', 'Shanbhag', '7/9'],
     ['David', 'Streger', '4/25'],
     ['Vincent', 'Su', '10/4'],
     ['Maeve', 'Tsivanidis', '8/8'],
     ['Naomi', 'Tudhope', '8/24'],
-    ['Nivedita', 'Venkateish', '7/24'],
+    ['Niv', None, '7/24'],
     ['Rachel', 'Wasser', '4/26'],
     ['Jasper', 'Wu', '12/25'],
     ['Frank', 'Yodice', '6/6'],
@@ -74,10 +74,10 @@ BIRTHDAY_DATA = (
 )
 
 parser = argparse.ArgumentParser()
-parser.add_argument('token')
+parser.add_argument('-t', type=str, required=True)
 args = parser.parse_args()
 
-TOKEN = args.token
+TOKEN = args.t
 
 POST_URL = 'https://hooks.slack.com/services/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'
 
@@ -107,10 +107,12 @@ def bdays(birthday_data, today, id_dict):
 
     for todays_bday in todays_bdays:
         first_name, last_name = todays_bday[0], todays_bday[1]
-        user_id = id_dict[first_name + ' ' + last_name]
-        data = {'text': 'Happy birthday <@{}>!!!'.format(user_id)}
-        requests.post(POST_URL, data=json.dumps(data), headers=HEADERS)
-
+        try:
+            user_id = id_dict[first_name + ' ' + last_name] if last_name else id_dict[first_name]
+            data = {'text': 'Happy birthday <@{}>!!!'.format(user_id)}
+            requests.post(POST_URL, data=json.dumps(data), headers=HEADERS)
+        except KeyError:
+            data = {'text': 'Happy birthday {} {}!!!'.format(first_name, last_name)}
 
 def main():
     
