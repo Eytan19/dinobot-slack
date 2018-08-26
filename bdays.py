@@ -73,7 +73,7 @@ BIRTHDAY_DATA = (
     ['Sherie', 'Zhou', '8/17'],
 )
 
-parser = argrparse.ArgumentParser()
+parser = argparse.ArgumentParser()
 parser.add_argument('token')
 args = parser.parse_args()
 
