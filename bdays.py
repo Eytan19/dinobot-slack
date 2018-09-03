@@ -113,6 +113,7 @@ def bdays(birthday_data, today, id_dict):
             requests.post(POST_URL, data=json.dumps(data), headers=HEADERS)
         except KeyError:
             data = {'text': 'Happy birthday {} {}!!!'.format(first_name, last_name)}
+            requests.post(POST_URL, data=json.dumps(data), headers=HEADERS)
 
 def main():
     
